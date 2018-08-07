@@ -1,0 +1,57 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">字符串处理 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:36.84210526315789%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>字符串处理</h1></div><div class="article-body"><p>字符串处理函数是面试中必考也是日常我们业务逻辑开发中常用到的，因此我们在面试之前一定要将常用的字符串处理函数牢记于心<br/>
+for example：<br/>
+先简单来一个简单的小例子来练练手：（业务场景：隐藏掉手机号的中间几位数字，用*代替）</p>
+<pre><code>$str = 1852271352;
+echo substr_replace($str,&#x27;***&#x27;,3,3);   //output:185***1351
+</code></pre>
+<p>设想一下如果你不使用函数去做处理是一种都没痛苦的事情</p>
+<h1 data-line="9" class="line"><a id="living_example_one_9"></a>living example one</h1>
+<pre><code>$str = &#x27;Uploads/a.b.php&#x27;;  
+尽可能多的获取.php或者php
+
+</code></pre>
+<p>考点：<br/>
+1）字符串的处理</p>
+<p>分析：<br/>
+1）这是一个很经典的PHP的面试题目，考察的点都是PHP的一些函数，包含了字符处理函数，数组处理函数，文件处理函数</p>
+<p>下面我先从字符串处理函数来进行解答这道题<br/>
+1）substr函数</p>
+<p><code>substr($str,-3);</code></p>
+<p>2）使用strrpos和substr函数配合使用</p>
+<p><code>substr($str,strrpos($str,&#x27;.&#x27;));</code></p>
+<p>3）使用strrchr函数</p>
+<p><code>strrchr($str,&#x27;.&#x27;);</code></p>
+<p>4）使用数组函数：explode和array_pop</p>
+<pre><code>$arr = explode(&#x27;.&#x27;,$str);
+echo array_pop($arr);
+</code></pre>
+<p>5）使用文件系统函数pathinfo</p>
+<p><code>pathinfo($str)[&#x27;extension&#x27;]</code></p>
+<h1 data-line="47" class="line"><a id="living_example_two_47"></a>living example two</h1>
+<p>不用PHP函数实现字符串反转</p>
+<pre><code>//数组越界的问题
+Notice: Uninitialized string offset: 7 in D:\wamp\www\phpTest\test.php on line 7  
+$str = &#x27;abcdefg&#x27;;
+$len = strlen($str);
+$return = &#x27;&#x27;;
+for($i=$len-1;$i&gt;=0;$i--){
+    $return.=$str{$i};
+}
+echo $return;
+</code></pre>
+<h1 data-line="64" class="line"><a id="living_example_three_64"></a>living example three</h1>
+<p>请写一个函数，实现以下功能： 字符串“open_door” 转换成 “OpenDoor”、<br/>
+”make_by_id” 转换成 ”MakeById”</p>
+<pre><code>function o($str){
+    $arr = explode(&#x27;_&#x27;,$str);
+    $str = &#x27;&#x27;;
+    foreach($arr as $v){
+        $str.=ucfirst($v);
+    }
+    return $str;
+}
+echo o(&#x27;make_by_id&#x27;);
+</code></pre>
+<p>分析：<br/>
+two和three两道题都是考察我们php的字符串处理函数</p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="流程控制.html">流程控制</a></span><span class="next">下一篇：<a href="数组处理.html">数组处理</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","content":"字符串处理函数是面试中必考也是日常我们业务逻辑开发中常用到的，因此我们在面试之前一定要将常用的字符串处理函数牢记于心\nfor example：\n先简单来一个简单的小例子来练练手：（业务场景：隐藏掉手机号的中间几位数字，用*代替）\n~~~\n$str = 1852271352;\necho substr_replace($str,'***',3,3);   //output:185***1351\n~~~\n设想一下如果你不使用函数去做处理是一种都没痛苦的事情\n\n# living example one\n\n~~~\n$str = 'Uploads/a.b.php';  \n尽可能多的获取.php或者php\n\n~~~\n考点：\n1）字符串的处理\n\n分析：\n1）这是一个很经典的PHP的面试题目，考察的点都是PHP的一些函数，包含了字符处理函数，数组处理函数，文件处理函数\n\n下面我先从字符串处理函数来进行解答这道题\n1）substr函数\n\n`substr($str,-3);`       \n\n2）使用strrpos和substr函数配合使用\n\n`substr($str,strrpos($str,'.'));`\n\n3）使用strrchr函数\n\n`strrchr($str,'.');`\n\n4）使用数组函数：explode和array_pop\n\n~~~\n$arr = explode('.',$str);\necho array_pop($arr);\n~~~\n\n5）使用文件系统函数pathinfo\n\n`pathinfo($str)['extension']`\n\n\n# living example two\n\n不用PHP函数实现字符串反转\n\n~~~\n//数组越界的问题\nNotice: Uninitialized string offset: 7 in D:\\wamp\\www\\phpTest\\test.php on line 7  \n$str = 'abcdefg';\n$len = strlen($str);\n$return = '';\nfor($i=$len-1;$i>=0;$i--){\n    $return.=$str{$i};\n}\necho $return;\n~~~\n\n\n# living example three\n\n请写一个函数，实现以下功能： 字符串“open_door” 转换成 “OpenDoor”、\n”make_by_id” 转换成 ”MakeById”\n\n~~~\nfunction o($str){\n    $arr = explode('_',$str);\n    $str = '';\n    foreach($arr as $v){\n        $str.=ucfirst($v);\n    }\n    return $str;\n}\necho o('make_by_id');\n~~~\n\n分析：\ntwo和three两道题都是考察我们php的字符串处理函数"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

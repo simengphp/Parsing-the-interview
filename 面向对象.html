@@ -1,0 +1,83 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">面向对象 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:52.63157894736842%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>面向对象</h1></div><div class="article-body"><p>面向对象的对立面是面向过程，如果读者是面向过程开发者就会深有体会：<br/>
+1）开发速度快<br/>
+2）后期维护困难<br/>
+3）代码整体混乱，不易扩展（某种情况下）<br/>
+以上只是一些简答的分析，此时应该用&quot;<strong>谁用谁知道</strong>&quot;这句话来概括，会好些!!!嘿嘿！</p>
+<p class="align-center"><img alt="" src="images/7OWSV5CZB~1XQ3%5B5BK9P.jpg"/></p>
+<p>面向对象的出现无疑是一个跨时代的出现，它让我们的程序看起来更加的优美，扩展性很高，也提高了我们的开发效率，包括让我们的代码更加的规范，后期维护更加顺畅！</p>
+<p class="align-center"><img alt="" src="images/HO3EP8CVMNC~F0H3Q2JO.jpg"/></p>
+<p>而面向对象里面一个最最最重要就是面向接口编程才能发挥面向对象的特性吧，很多我们使用的框架里面有很多面向接口编程的例子，下面我就来分析一下：</p>
+<p class="align-center"><img alt="" src="images/E%600V0R933DCNF8GHH.jpg"/></p>
+<p>总结一句话就是要把现实事物抽象出来，并且向面向接口编程，也就是相同对象的方法定义一个共同的接口，比如人和动物都能吃，那么你可以抽象出来一个吃的接口，然后定义人的对象可以实现这个方法</p>
+<p>面向对象的三大特性：继承，封装，多态<br/>
+五大基本原则：<br/>
+单一原则（一个类只做一件事）<br/>
+开放封闭原则：对外的扩展应该是开发的，但是对修改应该是关闭的<br/>
+替换原则：子类可以替换父类的存在<br/>
+依赖原则：当你下层类较上层依赖低的情况，你可以让上层定义一个抽象的方法，然后下层去实现，这样你就可以依赖倒置，然后不会循环依赖<br/>
+接口分离原则：模块间通过对象接口隔离开，而不是通过具体的类强耦合</p>
+<p>1、类的访问限制public protected private</p>
+<p>2、定义一个抽象类的时候，如果你的方法是抽象方法（方法头，不包含方法体），那么当你继承这个类的时候，你必须要显示这个抽象方法   interface是一个特殊的抽象类 interface 类{}<br/>
+以上的做法是为了统一化标准，让我们的方法能够保持方法名的一致性<br/>
+for example</p>
+<pre><code>abstract class ParentAb{
+    abstract function test();
+public function body(){}
+}
+class ChildAb extends ParentAb{
+    public function test(){
+    }
+}
+</code></pre>
+<p>3、面向接口编程其实也就是，你先定义一个接口，然后你去实现它，这个就是依赖原则<br/>
+for example</p>
+<pre><code>interface A{
+    public function a();
+    //不能创建具体实现方法  public function b(){}
+}
+class B implements A{
+    public function a(){
+    }
+}
+</code></pre>
+<p>抽象类和接口类的区别<br/>
+1、抽象类可以有非抽象方法，但是接口类只能有接口方法<br/>
+2、抽象类被继承时extends只能继承一个，但是接口可以实现多个<br/>
+3、一个是继承一个是实现<br/>
+这个是面试里面常考的一个点，小伙伴一定要记下来呦！</p>
+<p>4、函数内部定义的变量，函数执行完毕之后，变量就会被释放掉，那么static就是在这种情况下出现的，static这个静态资源，普通类里面可以定义静态属性和静态的方法，然后类名::function   类名::$paramer   这样调用      如果你在父类里面定义了一个static，那么你可以使用parent::$paramer</p>
+<p>5、子类可以对父类的方法进行重写，但是当你的父类方法里面定义的方法没有参数，然后你子类调用相同方法的时候就会导致warning，那么你就要在子类的方法里面那个参数设置一个默认值</p>
+<pre><code>class Parent{
+final public function test(){
+echo 1;
+}
+}
+class child extends Parent{
+public function test($test = null){
+echo $test;
+parent::test();
+}
+}
+</code></pre>
+<p>如果你不想让你的父类方法被重写，那么你可以定义一下final这个关键字<br/>
+对于不想被任何类集成的类，那么你可以定义  final class Parent<br/>
+子类中可以使用parent::test()直接方法父类的方法</p>
+<p>6、PHP的魔术方法</p>
+<pre><code>__construct() 实例化类时自动调用。
+__destruct() 类对象使用结束时自动调用。
+__set() 在给未定义的属性赋值的时候调用。
+__get() 调用未定义的属性时候调用。
+__isset() 使用isset()或empty()函数时候会调用。
+__unset() 使用unset()时候会调用。
+__sleep() 使用serialize序列化时候调用。
+__wakeup() 使用unserialize反序列化的时候调用。
+__call() 调用一个不存在的方法的时候调用。
+__callStatic()调用一个不存在的静态方法是调用。
+__toString() 把对象转换成字符串的时候会调用。比如 echo。
+__invoke() 当尝试把对象当方法调用时调用。
+__set_state() 当使用var_export()函数时候调用。接受一个数组参数。
+__clone() 当使用clone复制一个对象时候调用。
+</code></pre>
+<p class="align-center"><img alt="" src="images/2986969-a4376488f15c035c.jpg"/></p>
+<p class="align-center"><img alt="" src="images/2986969-f0077777b32498f5.jpg"/></p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="文件处理.html">文件处理</a></span><span class="next">下一篇：<a href="垃圾回收.html">垃圾回收</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","content":"面向对象的对立面是面向过程，如果读者是面向过程开发者就会深有体会：\n1）开发速度快\n2）后期维护困难\n3）代码整体混乱，不易扩展（某种情况下）\n以上只是一些简答的分析，此时应该用\"**谁用谁知道**\"这句话来概括，会好些!!!嘿嘿！\n:-: ![](images/7OWSV5CZB~1XQ3[5BK9P.jpg)\n\n面向对象的出现无疑是一个跨时代的出现，它让我们的程序看起来更加的优美，扩展性很高，也提高了我们的开发效率，包括让我们的代码更加的规范，后期维护更加顺畅！\n:-: ![](images/HO3EP8CVMNC~F0H3Q2JO.jpg)\n\n而面向对象里面一个最最最重要就是面向接口编程才能发挥面向对象的特性吧，很多我们使用的框架里面有很多面向接口编程的例子，下面我就来分析一下：\n:-: ![](images/E`0V0R933DCNF8GHH.jpg)\n\n总结一句话就是要把现实事物抽象出来，并且向面向接口编程，也就是相同对象的方法定义一个共同的接口，比如人和动物都能吃，那么你可以抽象出来一个吃的接口，然后定义人的对象可以实现这个方法\n\n面向对象的三大特性：继承，封装，多态\n五大基本原则：\n单一原则（一个类只做一件事）\n开放封闭原则：对外的扩展应该是开发的，但是对修改应该是关闭的\n替换原则：子类可以替换父类的存在\n依赖原则：当你下层类较上层依赖低的情况，你可以让上层定义一个抽象的方法，然后下层去实现，这样你就可以依赖倒置，然后不会循环依赖\n接口分离原则：模块间通过对象接口隔离开，而不是通过具体的类强耦合\n\n1、类的访问限制public protected private\n\n2、定义一个抽象类的时候，如果你的方法是抽象方法（方法头，不包含方法体），那么当你继承这个类的时候，你必须要显示这个抽象方法   interface是一个特殊的抽象类 interface 类{}\n以上的做法是为了统一化标准，让我们的方法能够保持方法名的一致性\nfor example\n~~~\nabstract class ParentAb{\n    abstract function test();\npublic function body(){}\n}\nclass ChildAb extends ParentAb{\n    public function test(){\n    }\n}\n~~~\n\n3、面向接口编程其实也就是，你先定义一个接口，然后你去实现它，这个就是依赖原则\nfor example\n~~~\ninterface A{\n    public function a();\n    //不能创建具体实现方法  public function b(){}\n}\nclass B implements A{\n    public function a(){\n    }\n}\n~~~\n\n抽象类和接口类的区别\n1、抽象类可以有非抽象方法，但是接口类只能有接口方法\n2、抽象类被继承时extends只能继承一个，但是接口可以实现多个\n3、一个是继承一个是实现\n这个是面试里面常考的一个点，小伙伴一定要记下来呦！\n\n4、函数内部定义的变量，函数执行完毕之后，变量就会被释放掉，那么static就是在这种情况下出现的，static这个静态资源，普通类里面可以定义静态属性和静态的方法，然后类名::function   类名::$paramer   这样调用      如果你在父类里面定义了一个static，那么你可以使用parent::$paramer\n\n\n\n5、子类可以对父类的方法进行重写，但是当你的父类方法里面定义的方法没有参数，然后你子类调用相同方法的时候就会导致warning，那么你就要在子类的方法里面那个参数设置一个默认值\n~~~\nclass Parent{\nfinal public function test(){\necho 1;\n}\n}\nclass child extends Parent{\npublic function test($test = null){\necho $test;\nparent::test();\n}\n}\n~~~\n如果你不想让你的父类方法被重写，那么你可以定义一下final这个关键字\n对于不想被任何类集成的类，那么你可以定义  final class Parent\n子类中可以使用parent::test()直接方法父类的方法\n\n6、PHP的魔术方法\n~~~\n__construct() 实例化类时自动调用。\n__destruct() 类对象使用结束时自动调用。\n__set() 在给未定义的属性赋值的时候调用。\n__get() 调用未定义的属性时候调用。\n__isset() 使用isset()或empty()函数时候会调用。\n__unset() 使用unset()时候会调用。\n__sleep() 使用serialize序列化时候调用。\n__wakeup() 使用unserialize反序列化的时候调用。\n__call() 调用一个不存在的方法的时候调用。\n__callStatic()调用一个不存在的静态方法是调用。\n__toString() 把对象转换成字符串的时候会调用。比如 echo。\n__invoke() 当尝试把对象当方法调用时调用。\n__set_state() 当使用var_export()函数时候调用。接受一个数组参数。\n__clone() 当使用clone复制一个对象时候调用。\n~~~\n\n:-: ![](images/2986969-a4376488f15c035c.jpg)\n:-: ![](images/2986969-f0077777b32498f5.jpg)"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

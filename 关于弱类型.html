@@ -1,0 +1,67 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">关于弱类型 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:15.789473684210526%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>关于弱类型</h1></div><div class="article-body"><h1 data-line="0" class="line"><a id="living_example_one_0"></a>living example one</h1>
+<pre><code>$tmp = 0 == &quot;a&quot; ? 1:2;
+echo $tmp;  
+//output 1
+</code></pre>
+<p>考点：<br/>
+1）PHP的弱类型<br/>
+2）PHP的运算符的优先级<br/>
+本节主要讨论PHP弱类型问题，优先级下一章节再进行讨论</p>
+<p>分析：<br/>
+1)在PHP中如果数值和字符串进行比较的时候，PHP会将非数字开头的字符串转换成为整数0，如果前<br/>
+面有数字值则会转化成为开头的数值进行比较，那么题上的输出为1<br/>
+2)相反，如果是2a这样的字符串，那么就会返回2，再者如果为a2这种的还是会返回1<br/>
+3)如果放在js里面那就不一样了。会返回一个：var tmp = 0 ==&#x27;1a&#x27;?1:2; alert(tmp);  这样会输出为2<br/>
+4)运算符优先级： == &gt; 三元运算 &gt;赋值运算</p>
+<h1 data-line="19" class="line"><a id="living_example_two_19"></a>living example two</h1>
+<pre><code>$str1 = &#x27;yabadabadoo&#x27;;
+
+$str2 = &#x27;yaba&#x27;;
+
+if (strpos($str1,$str2)) { 
+
+echo &quot;\\&quot;&quot; . $str1 . &quot;\\&quot; contains \\&quot;&quot; . $str2 . &quot;\\&quot;&quot;;
+
+} else {
+
+echo &quot;\\&quot;&quot; . $str1 . &quot;\\&quot; does not contain \\&quot;&quot; . $str2 . &quot;\\&quot;&quot;;
+
+}
+
+正确运行的输出结果:
+
+&quot;yabadabadoo&quot; does not contain &quot;yaba&quot;
+
+解析：
+
+1)strpos是返回字符串str2在str1的位置，没有找到则返回false然而实际上这次返回了0而在if语句中0
+也被当作false,所以，我们需要对false做类型判断，正确的代码如下:
+
+
+$str1 = &#x27;yabadabadoo&#x27;;
+
+$str2 = &#x27;yaba&#x27;;
+
+if (strpos($str1,$str2) !== false) { 
+
+echo &quot;\\&quot;&quot; . $str1 . &quot;\\&quot; contains \\&quot;&quot; . $str2 . &quot;\\&quot;&quot;;
+
+} else {
+
+echo &quot;\\&quot;&quot; . $str1 . &quot;\\&quot; does not contain \\&quot;&quot; . $str2 . &quot;\\&quot;&quot;;
+
+}
+</code></pre>
+<p>需要注意的是我们使用了!==，在php 和 JS中= !相对== 更为严格需要要求数据类型的一致。</p>
+<h1 data-line="64" class="line"><a id="living_example_three_64"></a>living example three</h1>
+<p>echo &#x27;Testing &#x27; .1+2.&#x27;45&#x27;;</p>
+<p>考点：<br/>
+PHP的弱类型和运算符的优先级以及&quot;+&quot;号在PHP中和其他语言的不同</p>
+<p>解析：<br/>
+运算的结果步骤：<br/>
+1）echo &#x27;Testing1&#x27;+2.&#x27;45&#x27;;<br/>
+2）echo 2.&#x27;45&#x27;;<br/>
+3）echo &#x27;245&#x27;;<br/>
+&quot;+-.&quot;三者的优先级是一样，因此程序是从左向右依次执行，进入数值计算会将字符串硬性转换为<br/>
+数值，php数值计算会强制转化字符串，如果前面有数字就第一个为最终值   如果没有就是0</p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="变量作用域问题.html">变量作用域问题</a></span><span class="next">下一篇：<a href="运算符优先级.html">运算符优先级</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","content":"# living example one\n\n    $tmp = 0 == \"a\" ? 1:2;\n    echo $tmp;  \n    //output 1\n    \n考点：\n1）PHP的弱类型\n2）PHP的运算符的优先级\n本节主要讨论PHP弱类型问题，优先级下一章节再进行讨论\n\n分析：\n1)在PHP中如果数值和字符串进行比较的时候，PHP会将非数字开头的字符串转换成为整数0，如果前\n面有数字值则会转化成为开头的数值进行比较，那么题上的输出为1\n2)相反，如果是2a这样的字符串，那么就会返回2，再者如果为a2这种的还是会返回1\n3)如果放在js里面那就不一样了。会返回一个：var tmp = 0 =='1a'?1:2; alert(tmp);  这样会输出为2\n4)运算符优先级： == > 三元运算 >赋值运算\n\n\n# living example two\n    \n~~~\n$str1 = 'yabadabadoo';\n\n$str2 = 'yaba';\n\nif (strpos($str1,$str2)) { \n\necho \"\\\\\"\" . $str1 . \"\\\\\" contains \\\\\"\" . $str2 . \"\\\\\"\";\n\n} else {\n\necho \"\\\\\"\" . $str1 . \"\\\\\" does not contain \\\\\"\" . $str2 . \"\\\\\"\";\n\n}\n\n正确运行的输出结果:\n\n\"yabadabadoo\" does not contain \"yaba\"\n\n解析：\n\n1)strpos是返回字符串str2在str1的位置，没有找到则返回false然而实际上这次返回了0而在if语句中0\n也被当作false,所以，我们需要对false做类型判断，正确的代码如下:\n\n\n$str1 = 'yabadabadoo';\n\n$str2 = 'yaba';\n\nif (strpos($str1,$str2) !== false) { \n\necho \"\\\\\"\" . $str1 . \"\\\\\" contains \\\\\"\" . $str2 . \"\\\\\"\";\n\n} else {\n\necho \"\\\\\"\" . $str1 . \"\\\\\" does not contain \\\\\"\" . $str2 . \"\\\\\"\";\n\n}\n~~~\n\n需要注意的是我们使用了!==，在php 和 JS中= !相对== 更为严格需要要求数据类型的一致。\n\n\n# living example three\n\necho 'Testing ' .1+2.'45';\n\n考点：\nPHP的弱类型和运算符的优先级以及\"+\"号在PHP中和其他语言的不同\n\n解析：\n运算的结果步骤：\n1）echo 'Testing1'+2.'45';\n2）echo 2.'45';\n3）echo '245';\n\"+-.\"三者的优先级是一样，因此程序是从左向右依次执行，进入数值计算会将字符串硬性转换为\n数值，php数值计算会强制转化字符串，如果前面有数字就第一个为最终值   如果没有就是0"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

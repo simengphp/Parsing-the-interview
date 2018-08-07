@@ -1,0 +1,48 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">文件处理 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:47.368421052631575%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>文件处理</h1></div><div class="article-body"><p>小伙伴们在日常的开发中都会用户PHP上传图片的操作，然而里面有一个生成文件夹的功能是我们必须要会的：</p>
+<pre><code>$dir = &#x27;./liuzhu/test/&#x27;;
+if(is_dir($dir)){  //如果存在就返回true
+    file_put_contents($dir.&#x27;1.txt&#x27;,$url);
+}else{ //如果不存在就创建，true的这个参数是可以循环创建
+    if(mkdir($dir,0777,true)){
+        file_put_contents($dir.&#x27;1.txt&#x27;,$url);
+    };
+}
+</code></pre>
+<p>考点：<br/>
+1）PHP的文件系统函数</p>
+<p>分析：<br/>
+1）日常考察中考题一般为递归循环文件目录的题目比较多</p>
+<pre><code>function listDir($dir = &#x27;.&#x27;){
+if ($handle = opendir($dir)) {
+while (false !== ($file = readdir($handle))) {
+if($file == &#x27;.&#x27; || $file == &#x27;..&#x27;){
+continue;
+}
+if(is_dir($sub_dir = realpath($dir.&#x27;/&#x27;.$file))){
+echo &#x27;FILE in PATH:&#x27;.$dir.&#x27;:&#x27;.$file.&#x27;&lt;br&gt;&#x27;;
+listDir($sub_dir);
+}else{
+echo &#x27;FILE:&#x27;.$file.&#x27;&lt;br&gt;&#x27;;
+}
+}
+closedir($handle);
+}
+}
+ 
+listDir(&#x27;e:\www\a&#x27;);
+</code></pre>
+<p>2）操作文章线程安全和不安全的问题</p>
+<p>高并发访问会不会导致文件重复写以及写入混乱问题</p>
+<p>3）文件加锁的问题</p>
+<pre><code>LOCK_EX 排它锁
+LOCK_UN 释放锁
+LOCK_SH 共享锁
+
+$fp = &#x27;Uploads/1.txt&#x27;;
+flock($fp,LOCK_EX) 
+</code></pre>
+<p>4）文件的读写问题</p>
+<p>文件r和w模式读写问题</p>
+<p>r的模式，只是一个只读的模式，r+的话就是会把你写入的字符，替换掉原位置的字符，比如写入hello world  你文件里面已经有123456789  那么当你使用r+的模式的时候，那么你就会变成helloworld789<br/>
+w模式会清空文件的内容，然后写入，如果你想不断的写入到一个文件的时候，那么你可以先读取出来然后赋值给一个变量，然后使用这个变量不断的去写入文件里面</p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="数组处理.html">数组处理</a></span><span class="next">下一篇：<a href="面向对象.html">面向对象</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","content":"小伙伴们在日常的开发中都会用户PHP上传图片的操作，然而里面有一个生成文件夹的功能是我们必须要会的：\n~~~\n$dir = './liuzhu/test/';\nif(is_dir($dir)){  //如果存在就返回true\n    file_put_contents($dir.'1.txt',$url);\n}else{ //如果不存在就创建，true的这个参数是可以循环创建\n    if(mkdir($dir,0777,true)){\n        file_put_contents($dir.'1.txt',$url);\n    };\n}\n~~~\n考点：\n1）PHP的文件系统函数\n\n分析：\n1）日常考察中考题一般为递归循环文件目录的题目比较多\n\n~~~\nfunction listDir($dir = '.'){\nif ($handle = opendir($dir)) {\nwhile (false !== ($file = readdir($handle))) {\nif($file == '.' || $file == '..'){\ncontinue;\n}\nif(is_dir($sub_dir = realpath($dir.'/'.$file))){\necho 'FILE in PATH:'.$dir.':'.$file.'<br>';\nlistDir($sub_dir);\n}else{\necho 'FILE:'.$file.'<br>';\n}\n}\nclosedir($handle);\n}\n}\n \nlistDir('e:\\www\\a');\n~~~\n\n2）操作文章线程安全和不安全的问题\n\n高并发访问会不会导致文件重复写以及写入混乱问题\n\n3）文件加锁的问题\n\n~~~\nLOCK_EX 排它锁\nLOCK_UN 释放锁\nLOCK_SH 共享锁\n\n$fp = 'Uploads/1.txt';\nflock($fp,LOCK_EX) \n~~~\n\n4）文件的读写问题\n\n文件r和w模式读写问题\n\nr的模式，只是一个只读的模式，r+的话就是会把你写入的字符，替换掉原位置的字符，比如写入hello world  你文件里面已经有123456789  那么当你使用r+的模式的时候，那么你就会变成helloworld789\nw模式会清空文件的内容，然后写入，如果你想不断的写入到一个文件的时候，那么你可以先读取出来然后赋值给一个变量，然后使用这个变量不断的去写入文件里面\n\n"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

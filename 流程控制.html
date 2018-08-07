@@ -1,0 +1,60 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">流程控制 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:31.57894736842105%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>流程控制</h1></div><div class="article-body"><p>1、数组循环的几种方式<br/>
+1）foreach()<br/>
+2）for()<br/>
+3）while() list() each()组合</p>
+<p>考点：<br/>
+1）循环语句的使用</p>
+<p>分析：<br/>
+1）for只能遍历索引数组<br/>
+2）foreach能遍历索引数组和关联数组<br/>
+3）联合list()  each() while() 也能遍历索引数组和关联数组<br/>
+4）foreach循环内部会rest</p>
+<h1 data-line="14" class="line"><a id="living_example_one_14"></a>living example one</h1>
+<p>1、if语句和switch语句相比哪个效率更高</p>
+<p>考点：<br/>
+1）php流程控制语句效率问题</p>
+<p>分析：<br/>
+1）如果一个很简单的分支判断用if更加高效<br/>
+2）如果比较比较复杂那么使用switch效率要高的多</p>
+<h1 data-line="26" class="line"><a id="living_example_two_26"></a>living example two</h1>
+<p>1、怎么优化if..elseif语句的情况？</p>
+<p>1）将可能性高的放在优先的位置<br/>
+2）如果比较的是整型，浮点型或者字符串那么你可以使用switch case 进行改造</p>
+<h1 data-line="33" class="line"><a id="living_example_three_33"></a>living example three</h1>
+<p>1、switch....case...语法的一个小问题</p>
+<pre><code>$a = 1;
+switch ($a) {
+    case $a &gt;= 0:
+        echo 0;
+        break;
+    case $a &gt;= 10:
+        echo 1;
+        break;
+
+    default:
+        echo 2;
+        break;
+}
+//ouput:0
+</code></pre>
+<p>分析：</p>
+<p>原因：$a 非0即是true   所以要找到下面是true的结果，那么也就是第一个了，下面同理是</p>
+<p>转换成一个false 那么下面哪个是false呢，那就是$a &gt;= 10</p>
+<pre><code>$a = 0;  
+switch ($a) {
+    case $a &gt;= 0:
+        echo 0;
+        break;
+    case $a &gt;= 10:
+        echo 1;
+        break;
+
+    default:
+        echo 2;
+        break;
+}
+</code></pre>
+<p>分析：</p>
+<p>输出1</p>
+<p>因此不要随便使用switch去做比较，要做的就是我传的这个值是否想匹配，那么就不会出现这个问题了</p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="变量引用.html">变量引用</a></span><span class="next">下一篇：<a href="字符串处理.html">字符串处理</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","content":"1、数组循环的几种方式\n1）foreach()\n2）for()\n3）while() list() each()组合\n\n考点：\n1）循环语句的使用\n\n分析：\n1）for只能遍历索引数组\n2）foreach能遍历索引数组和关联数组\n3）联合list()  each() while() 也能遍历索引数组和关联数组\n4）foreach循环内部会rest\n\n# living example one\n\n1、if语句和switch语句相比哪个效率更高\n\n考点：\n1）php流程控制语句效率问题\n\n分析：\n1）如果一个很简单的分支判断用if更加高效\n2）如果比较比较复杂那么使用switch效率要高的多\n\n\n# living example two\n\n1、怎么优化if..elseif语句的情况？\n\n1）将可能性高的放在优先的位置\n2）如果比较的是整型，浮点型或者字符串那么你可以使用switch case 进行改造\n\n# living example three\n\n1、switch....case...语法的一个小问题\n~~~\n$a = 1;\nswitch ($a) {\n    case $a >= 0:\n        echo 0;\n        break;\n    case $a >= 10:\n        echo 1;\n        break;\n\n    default:\n        echo 2;\n        break;\n}\n//ouput:0\n~~~\n\n分析：\n\n原因：$a 非0即是true   所以要找到下面是true的结果，那么也就是第一个了，下面同理是\n\n转换成一个false 那么下面哪个是false呢，那就是$a >= 10\n\n~~~\n$a = 0;  \nswitch ($a) {\n    case $a >= 0:\n        echo 0;\n        break;\n    case $a >= 10:\n        echo 1;\n        break;\n\n    default:\n        echo 2;\n        break;\n}\n~~~\n\n分析：\n\n输出1\n\n因此不要随便使用switch去做比较，要做的就是我传的这个值是否想匹配，那么就不会出现这个问题了\n"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

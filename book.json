@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        "highlight"
+    ],
+    "id": 64010,
+    "name": "simengphp/phpinterview",
+    "title": "PHP面试常考易错问题",
+    "sha": "f45c62a42f098cefec2df07337a5e959238277db",
+    "price": 100
+}

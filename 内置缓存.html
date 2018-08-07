@@ -1,0 +1,68 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">内置缓存 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:73.68421052631578%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>内置缓存</h1></div><div class="article-body"><p>提到PHP的内置缓存，我们第一印象应该就是ob_xxx这些函数，的确，php提供非常优秀的内置缓存函数，让我们能够实现页面的静态化编程，提高我们的网站访问速度，让我们网站能够适应更高并发的业务场景！</p>
+<p class="align-center"><img alt="" src="images/W3GRR%60WGFZTHJYKJ8R8VO.png"/></p>
+<p>1、首先有四个函数<br/>
+ob_start()  开启缓存<br/>
+ob_get_contents() 获取缓冲区的内容<br/>
+ob_clean() 删除缓冲区的内容<br/>
+ob_get_clean()  先获取然后再删除缓冲区内容</p>
+<p>2、然后我们定义一个函数来生成静态文件</p>
+<pre><code>/**定义一个缓存文件
+ * @author crazy
+ * @time 2018-03-14
+ */
+public function createCache(){
+    $action = ACTION_NAME;
+    $c_name = CONTROLLER_NAME;
+    $dir = &#x27;./Cache/&#x27;.$c_name.&#x27;/&#x27;.$action.&#x27;/&#x27;;
+    if(is_dir($dir)){
+        file_put_contents(&quot;$dir$action&quot;.&#x27;.shtml&#x27;,ob_get_contents());
+    }else{
+        if(mkdir($dir,0777,true)){
+            file_put_contents(&quot;$dir$action&quot;.&#x27;.shtml&#x27;,ob_get_contents());
+        }
+    }
+}
+
+</code></pre>
+<p>3、根据文件目录是否存在然后我们做相应的重定向</p>
+<pre><code>$action = ACTION_NAME;  //thinkphp的常量，功能是依托thinkphp进行示例
+$c_name = CONTROLLER_NAME;
+$dir = &#x27;./Cache/&#x27;.$c_name.&#x27;/&#x27;.$action.&#x27;/&#x27;.$action.&#x27;.shtml&#x27;;
+if(file_exists($dir)){
+    header(&quot;Location:http://localhost/simengphp/$dir&quot;);
+}
+</code></pre>
+<p>4、局部静态化</p>
+<pre><code>$.ajax({
+    url:&#x27;&#x27;,
+    type:&#x27;get&#x27;,
+    dataType:&#x27;json&#x27;,
+    error: function () {
+
+    },
+    success:function(data){
+$.each(data.result,function(key,val){
+
+})
+    }
+});
+</code></pre>
+<p>我们在我们的模板里面写上这个ajax获取页面内容的方法，然后我们调用这个页面的时候这个方法就会自动的创建了</p>
+<h1 data-line="62" class="line"><a id="living_example_one_62"></a>living example one</h1>
+<pre><code>ob_start();
+for($i=0;$i&lt;10;$i++){
+	echo $i;
+}
+$output = ob_get_content();
+ob_end_clean();
+echo $output;
+
+//output:0123456789
+</code></pre>
+<p>考点<br/>
+1）ob缓存函数的使用</p>
+<p>分析：<br/>
+第一行ob_start 开启缓存缓冲区，  ob_get_contents()获取缓冲区的内容，ob_end_clean(),清除并关闭，这时候在清除之前你已经获取然后并保存在了一个变量里面了，那么将输出0123456789</p>
+<p class="align-center"><img alt="" src="images/2986969-a4376488f15c035c.jpg"/></p>
+<p class="align-center"><img alt="" src="images/2986969-f0077777b32498f5.jpg"/></p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="学会避坑.html">学会避坑</a></span><span class="next">下一篇：<a href="可变变量.html">可变变量</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","content":"提到PHP的内置缓存，我们第一印象应该就是ob_xxx这些函数，的确，php提供非常优秀的内置缓存函数，让我们能够实现页面的静态化编程，提高我们的网站访问速度，让我们网站能够适应更高并发的业务场景！\n:-: ![](images/W3GRR`WGFZTHJYKJ8R8VO.png)\n\n1、首先有四个函数\nob_start()  开启缓存\nob_get_contents() 获取缓冲区的内容\nob_clean() 删除缓冲区的内容\nob_get_clean()  先获取然后再删除缓冲区内容\n\n2、然后我们定义一个函数来生成静态文件\n~~~\n/**定义一个缓存文件\n * @author crazy\n * @time 2018-03-14\n */\npublic function createCache(){\n    $action = ACTION_NAME;\n    $c_name = CONTROLLER_NAME;\n    $dir = './Cache/'.$c_name.'/'.$action.'/';\n    if(is_dir($dir)){\n        file_put_contents(\"$dir$action\".'.shtml',ob_get_contents());\n    }else{\n        if(mkdir($dir,0777,true)){\n            file_put_contents(\"$dir$action\".'.shtml',ob_get_contents());\n        }\n    }\n}\n\n~~~\n3、根据文件目录是否存在然后我们做相应的重定向\n~~~\n$action = ACTION_NAME;  //thinkphp的常量，功能是依托thinkphp进行示例\n$c_name = CONTROLLER_NAME;\n$dir = './Cache/'.$c_name.'/'.$action.'/'.$action.'.shtml';\nif(file_exists($dir)){\n    header(\"Location:http://localhost/simengphp/$dir\");\n}\n~~~\n\n\n\n\n4、局部静态化\n~~~\n$.ajax({\n    url:'',\n    type:'get',\n    dataType:'json',\n    error: function () {\n\n    },\n    success:function(data){\n$.each(data.result,function(key,val){\n\n})\n    }\n});\n~~~\n\n我们在我们的模板里面写上这个ajax获取页面内容的方法，然后我们调用这个页面的时候这个方法就会自动的创建了\n\n\n# living example one\n\n~~~\nob_start();\nfor($i=0;$i<10;$i++){\n\techo $i;\n}\n$output = ob_get_content();\nob_end_clean();\necho $output;\n\n//output:0123456789\n~~~\n\n考点\n1）ob缓存函数的使用\n\n分析：\n 第一行ob_start 开启缓存缓冲区，  ob_get_contents()获取缓冲区的内容，ob_end_clean(),清除并关闭，这时候在清除之前你已经获取然后并保存在了一个变量里面了，那么将输出0123456789\n\n\n\n\n\n\n\n\n:-: ![](images/2986969-a4376488f15c035c.jpg)\n:-: ![](images/2986969-f0077777b32498f5.jpg)"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

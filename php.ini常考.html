@@ -1,0 +1,41 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">php.ini常考 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:89.47368421052632%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>php.ini常考</h1></div><div class="article-body"><p>1、php.ini 中safe mod关闭 影响哪些函数和参数，至少写6个？</p>
+<pre><code>move_uploaded_file()        		
+exec()
+system()                              
+passthru()
+popen()                              
+fopen()
+mkdir()                               
+rmdir()
+rename()                           
+unlink()
+copy()                                 
+chgrp()
+chown()                             
+chmod()
+touch()                              
+symlink()
+link()                                  
+parse_ini_file()
+set_time_limit()                  
+max_execution_time mail()
+</code></pre>
+<p>2、取得服务器加载的php.ini文件<br/><code>php_ini_loaded_file()</code><br/>
+没有参数，存在就返回地址，没有将返回false</p>
+<p>3、当前文件或者程序下设置配置选项<br/><code>ini_set(&#x27;配置项&#x27;)</code></p>
+<p>4、获取配置文件的配置项的值<br/><code>ini_get(&#x27;配置项&#x27;)</code></p>
+<p>5、获取分配给php的内存量<br/><code>1）memory_get_usage()</code><br/>
+应用场景：获取变量的内存占用值</p>
+<p>6、设置PHP脚本的运行时间<br/><code>set_time_limit()</code><br/>
+1）设置0将是不限制<br/>
+2）set_time_limit(second=秒数) ，默认为30秒</p>
+<p>7、php扩展相关</p>
+<pre><code>1、extension_loaded(扩展名)   get_extension_funcs(&#x27;xxx&#x27;)
+1）extension_loaded()
+</code></pre>
+<p>应用场景：获取一个扩展是否已经安装加载<br/><code>2）get_extension_funcs(&#x27;xxx&#x27;)</code><br/>
+返回模块函数的数组，也就是你这个第三方扩展所有的函数<br/><code>3）get_loaded_extension()</code><br/>
+返回已经编译安装好的扩展</p>
+<p class="align-center"><img alt="" src="images/2986969-a4376488f15c035c.jpg"/></p>
+<p class="align-center"><img alt="" src="images/2986969-f0077777b32498f5.jpg"/></p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="内置常量.html">预定义常量</a></span><span class="next">下一篇：<a href="常考题.html">常考题</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","content":"1、php.ini 中safe mod关闭 影响哪些函数和参数，至少写6个？\n~~~\nmove_uploaded_file()        \t\t\nexec()\nsystem()                              \npassthru()\npopen()                              \nfopen()\nmkdir()                               \nrmdir()\nrename()                           \nunlink()\ncopy()                                 \nchgrp()\nchown()                             \nchmod()\ntouch()                              \nsymlink()\nlink()                                  \nparse_ini_file()\nset_time_limit()                  \nmax_execution_time mail()\n~~~\n\n2、取得服务器加载的php.ini文件\n`php_ini_loaded_file()`\n没有参数，存在就返回地址，没有将返回false\n\n3、当前文件或者程序下设置配置选项\n`ini_set('配置项')`\n\n4、获取配置文件的配置项的值\n`ini_get('配置项')`\n\n5、获取分配给php的内存量\n`1）memory_get_usage()`\n应用场景：获取变量的内存占用值\n\n6、设置PHP脚本的运行时间\n`set_time_limit()`\n1）设置0将是不限制\n2）set_time_limit(second=秒数) ，默认为30秒\n\n7、php扩展相关\n~~~\n1、extension_loaded(扩展名)   get_extension_funcs('xxx')\n1）extension_loaded()\n~~~\n应用场景：获取一个扩展是否已经安装加载\n`2）get_extension_funcs('xxx')`\n返回模块函数的数组，也就是你这个第三方扩展所有的函数\n`3）get_loaded_extension()`\n返回已经编译安装好的扩展\n\n\n\n:-: ![](images/2986969-a4376488f15c035c.jpg)\n:-: ![](images/2986969-f0077777b32498f5.jpg)"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

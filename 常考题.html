@@ -1,0 +1,236 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">常考题 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:94.73684210526315%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>常考题</h1></div><div class="article-body"><p>1、</p>
+<pre><code>$A=&quot;Hello &quot;;                 
+functionprint_A()              
+{
+ $A = &quot;phpmysql !!&quot;;
+global $A;                                               
+global    全局变量         函数是独立的模块                  $A外界定义的
+echo $A;
+}
+echo $A;  //Hello
+print_A(); //Hello   在你将$A定义为全局变量的时候，并未修改$A的值
+</code></pre>
+<p>2、</p>
+<pre><code>$email = ‘langwan@thizlinux.com.cn’;    
+$str = ___strstr_($email,‘@’);
+$info = __explode__(‘.’,$str);
+___print_r_($info);
+输出结果为：
+Array ([0] =&gt; @thizlinux [1]=&gt;com[2]=&gt;cn)    输出结果是一个数组
+
+</code></pre>
+<p>3、定义一个404跳转<br/><code>header(&quot;Http/1.1 404 Not Found&quot;);</code></p>
+<p>4、</p>
+<p>5、不用PHP函数实现字符串反转</p>
+<pre><code>Notice: Uninitialized string offset: 7 in D:\wamp\www\phpTest\test.php on line 7  
+//数组越界的问题
+$str = &#x27;abcdefg&#x27;;
+$len = strlen($str);
+$return = &#x27;&#x27;;
+for($i=$len-1;$i&gt;=0;$i--){
+    $return.=$str{$i};
+}
+echo $return;
+</code></pre>
+<p>6、写出五种获取.jpg或者jpg的的方法</p>
+<pre><code>$dir = &#x27;Uploads/img.upload.jpg&#x27;;
+substr($str,-3);
+//echo substr($dir,strrpos($dir,&#x27;.&#x27;));
+
+//echo strrchr($dir,&#x27;.&#x27;);
+
+//$arr = explode(&#x27;.&#x27;,$dir);
+//print_r(array_pop($arr));
+
+//$p = pathinfo($dir);
+//print_r($p);
+//print_r($p[&#x27;extension&#x27;]);
+
+//$new_str = strrev($dir);
+//echo $new_str.&quot;\n&quot;;
+//$a = strrev(substr($new_str,0,strpos($new_str,&#x27;.&#x27;)));
+//echo $a;
+</code></pre>
+<p>7、请写一个函数，实现以下功能： 字符串“open_door” 转换成 “OpenDoor”、”make_by_id” 转换成 ”MakeById”</p>
+<pre><code>function o($str){
+    $arr = explode(&#x27;_&#x27;,$str);
+    $str = &#x27;&#x27;;
+    foreach($arr as $v){
+        $str.=ucfirst($v);
+    }
+    return $str;
+}
+echo o(&#x27;make_by_id&#x27;);
+
+
+方法2：
+function ucfirstTest($str){
+    return ucfirst($str);
+}
+function test($str){
+    $arr = explode(&#x27;_&#x27;,$str);
+    $new_arr = array_map(&#x27;ucfirstTest&#x27;,$arr);
+    $str = implode(&#x27;&#x27;,$new_arr);
+    return $str;
+}
+$str = &#x27;open_str&#x27;;
+echo test($str);
+</code></pre>
+<p>8、用PHP打印出前一天的时间格式是2006-5-10 22:21:21(2分)<br/><code>echo date(&#x27;Y-m-d H:i:s&#x27;,strtotime(&#x27;-1 days&#x27;));</code></p>
+<p>9、mb_substr($str,1,10,&#x27;utf-8&#x27;);</p>
+<p>10、修改session的生存时间<br/>
+session_set_cookie_params</p>
+<p>11、strpos====这里要注意的就是strpos返回的是0，因为他在第0，所以要用===判断</p>
+<pre><code>$str = &#x27;https://www.baidu.com&#x27;;
+$str1 = &#x27;https://&#x27;;
+print_r(strpos($str,$str1));
+if(strpos($str,$str1) !== false){
+
+}
+</code></pre>
+<p>12、下面输出是什么，主要考的就是运算符的优先级和++  --的问题</p>
+<pre><code>$x = 5;
+echo $x;  5
+echo &quot;&lt;br /&gt;&quot;;
+echo $x+++$x++;  5+6 = 11
+echo &quot;&lt;br /&gt;&quot;;
+echo $x; 11
+echo &quot;&lt;br /&gt;&quot;;
+echo $x---$x--; 7-6 = 1
+echo &quot;&lt;br /&gt;&quot;;
+echo $x; 5
+</code></pre>
+<p>13、array_merge合并的时候，传入的都是数组，如果一个不是数组就会返回null</p>
+<p>14、$x = true and false; var_dump($x);  true</p>
+<p>15、PHP的可变变量：$a = c;  $$a = 10; $c = 10;</p>
+<pre><code>&lt;form action=&quot;test.php&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;a&quot; id=&quot;&quot;/&gt;
+    &lt;input type=&quot;text&quot; name=&quot;b&quot; id=&quot;&quot;/&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;aa&quot;/&gt;
+&lt;/form&gt;
+
+foreach($_POST as $k=&gt;$v){
+    ${$k} = $v;
+}
+echo &#x27;a&#x27;.isset($a)?$a:&#x27;&#x27;.PHP_EOL;
+echo &#x27;b&#x27;.isset($b)?$b:&#x27;&#x27;.PHP_EOL;
+
+</code></pre>
+<p>16、什么是自连接：无限分类就是自己链接自己查询</p>
+<p>17、html动态生成的节点加点击事件</p>
+<pre><code>$(&quot;.h3&quot;).on(&quot;click&quot;,&quot;h3&quot;,{foo:&quot;文本:&quot;},function(event){
+　　　　alert(event.data.foo+this.textContent);
+　　});
+</code></pre>
+<p>18、$url = &#x27;<a href="http://www.test.com.cn/abc/de/fg.php?id=1" target="_blank">http://www.test.com.cn/abc/de/fg.php?id=1</a>&#x27;;  获取php或者.php</p>
+<pre><code>$b = parse_url($url);  //php解析url地址，parse_str是解析字符串parse_str($str,$out)
+echo &quot;&lt;pre&gt;&quot;;
+/**array(4) {
+[&quot;scheme&quot;]=&gt;
+  string(4) &quot;http&quot;
+  [&quot;host&quot;]=&gt;
+  string(15) &quot;www.test.com.cn&quot;
+  [&quot;path&quot;]=&gt;
+  string(14) &quot;/abc/de/fg.php&quot;
+  [&quot;query&quot;]=&gt;
+  string(4) &quot;id=1&quot;
+}
+ */
+$arr = $b[&#x27;path&#x27;];  ///abc/de/fg.php
+echo substr($arr,strpos($arr,&#x27;.&#x27;));
+$new_arr = explode(&#x27;.&#x27;,$arr);
+echo end($new_arr);
+高效
+$arr = parse_url(&#x27;http://www.sina.com.cn/abc/de/fg.php?id=1&#x27;);
+$result=pathinfo(arr[&#x27;path&#x27;]);var_dump($arr);
+array(4) { [&quot;dirname&quot;]=&gt; string(7) &quot;/abc/de&quot; [&quot;basename&quot;]=&gt; string(6) &quot;fg.php&quot; [&quot;extension&quot;]=&gt; string(3) &quot;php&quot; [&quot;filename&quot;]=&gt; string(2) &quot;fg&quot; }
+var_dump($result[&#x27;extension&#x27;]);
+
+
+</code></pre>
+<p>19、mkdir和is_dir的使用</p>
+<pre><code>$dir = &#x27;./liuzhu/test/&#x27;;
+if(is_dir($dir)){  //如果存在就返回true
+    file_put_contents($dir.&#x27;1.txt&#x27;,$url);
+}else{ //如果不存在就创建，true的这个参数是可以循环创建
+    if(mkdir($dir,0777,true)){
+        file_put_contents($dir.&#x27;1.txt&#x27;,$url);
+    };
+}
+</code></pre>
+<p>20、定义一个字符串，然后获取第一个字符<br/>
+$str = &#x27;abcdef&#x27;;    $one = $str[1]  || $str{1} 这两种方式</p>
+<p>21、下面输出no</p>
+<pre><code>$v = 1;
+$m = 2;
+$l = 3;
+
+if( $l &gt; $m &gt; $v){
+    echo &quot;yes&quot;;
+}else{
+    echo &quot;no&quot;;
+}
+</code></pre>
+<p>首先$l&gt;$m返回的是一个true  然后true&gt;1   就返回了null</p>
+<p>22、获取图片的信息</p>
+<pre><code>getimagesize () 获取图片的尺寸
+Imagesx () 获取图片的宽度
+Imagesy () 获取图片的高度
+</code></pre>
+<p>23、$_SERVER；</p>
+<pre><code>$host = $_SERVER[&#x27;HTTP_HOST&#x27;]; //localhost
+$self = $_SERVER[&#x27;PHP_SELF&#x27;]; ///phpTest/test.php
+echo $host.$self;  //localhost/phpTest/test.php
+echo $_SERVER[&#x27;REMOTE_ADDR&#x27;]; //客户端ip地址
+echo $_SERVER[&#x27;SERVER_ADDR&#x27;]; //服务端ip地址
+echo $_SERVER[&#x27;REQUEST_URI&#x27;]; ///phpTest/test.php
+</code></pre>
+<p>24、php.ini 中safe mod关闭 影响哪些函数和参数，至少写6个？</p>
+<pre><code>move_uploaded_file()        exec()
+system()                              passthru()
+popen()                              fopen()
+mkdir()                               rmdir()
+rename()                            unlink()
+copy()                                 chgrp()
+chown()                              chmod()
+touch()                               symlink()
+link()                                   parse_ini_file()
+set_time_limit()                  max_execution_time mail()
+
+</code></pre>
+<p>25、isset() 、empty()与is_null的区别<br/>
+1、当变量未定义时，is_null() 和“参数本身”是不允许作为参数判断的，会报Notice警告错误；<br/>
+2、empty , isset首先都会检查变量是否存在，然后对变量值进行检测。而is_null 和 “参数本身”只是直接检查变量值，是否为null，因此如果变量未定义就会出现错误！<br/>
+3、isset()：仅当null和未定义，返回false；<br/>
+4、empty()：&quot;&quot;、0、&quot;0&quot;、NULL、FALSE、array(),未定义，均返回true；<br/>
+5、is_null()：仅判断是否为null，未定义报警告；<br/>
+6、变量本身作为参数，与empty()一致，但接受未定义变量时，报警告；</p>
+<p>26、http_build_query()</p>
+<pre><code>$arr = [
+    &#x27;title&#x27;=&gt;&#x27;nihao&#x27;,
+    &#x27;content&#x27;=&gt;&#x27;world&#x27;
+];
+$str = http_build_query($arr);
+var_dump($str);
+</code></pre>
+<p>27、curl   file_get_contents()  socket三种方式实现提交数据</p>
+<p>28、var_dump(((bool)&#x27;all&#x27;)+1);  2       true=1   1+1=2</p>
+<p>29、如果你一个整型integer超出了范围，那么就会被转成float</p>
+<p>30、如果你定义的了一个数组，那么当你unset这个数组的时候，你又定义了一个$a[5] 那么这个键应该是从5开始</p>
+<p>31、如何保证你的api接口的安全性</p>
+<p>32、这个地方考察是先用后加的问题</p>
+<pre><code>$a = 3;
+$b = 5;
+if($a == 3 || $b == 7){
+    echo $a++;
+    echo $b++;
+}
+echo $a.&#x27;  &#x27;.$b;
+3 5  4 6
+
+</code></pre>
+<p>33、count除去数组和实例化对象  其他的count()都是1    null是0</p>
+<pre><code>$a = count([4,5,6])+count(null)+count(false);
+var_dump($a);
+</code></pre>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="php.ini常考.html">php.ini常考</a></span><span class="next">下一篇：<a href="PHP知识体系.html">PHP知识体系</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"常考题.html","name":"常考题.md","title":"常考题","content":"1、\n~~~\n$A=\"Hello \";                 \nfunctionprint_A()              \n{\n $A = \"phpmysql !!\";\nglobal $A;                                               \nglobal    全局变量         函数是独立的模块                  $A外界定义的\necho $A;\n}\necho $A;  //Hello\nprint_A(); //Hello   在你将$A定义为全局变量的时候，并未修改$A的值\n~~~\n\n2、\n~~~\n$email = ‘langwan@thizlinux.com.cn’;    \n$str = ___strstr_($email,‘@’);\n$info = __explode__(‘.’,$str);\n___print_r_($info);\n输出结果为：\nArray ([0] => @thizlinux [1]=>com[2]=>cn)    输出结果是一个数组\n\n~~~\n3、定义一个404跳转\n`header(\"Http/1.1 404 Not Found\");`\n\n4、\n\n\n5、不用PHP函数实现字符串反转\n~~~\nNotice: Uninitialized string offset: 7 in D:\\wamp\\www\\phpTest\\test.php on line 7  \n//数组越界的问题\n$str = 'abcdefg';\n$len = strlen($str);\n$return = '';\nfor($i=$len-1;$i>=0;$i--){\n    $return.=$str{$i};\n}\necho $return;\n~~~\n\n6、写出五种获取.jpg或者jpg的的方法\n~~~\n$dir = 'Uploads/img.upload.jpg';\nsubstr($str,-3);\n//echo substr($dir,strrpos($dir,'.'));\n\n//echo strrchr($dir,'.');\n\n//$arr = explode('.',$dir);\n//print_r(array_pop($arr));\n\n//$p = pathinfo($dir);\n//print_r($p);\n//print_r($p['extension']);\n\n//$new_str = strrev($dir);\n//echo $new_str.\"\\n\";\n//$a = strrev(substr($new_str,0,strpos($new_str,'.')));\n//echo $a;\n~~~\n\n7、请写一个函数，实现以下功能： 字符串“open_door” 转换成 “OpenDoor”、”make_by_id” 转换成 ”MakeById”\n~~~\nfunction o($str){\n    $arr = explode('_',$str);\n    $str = '';\n    foreach($arr as $v){\n        $str.=ucfirst($v);\n    }\n    return $str;\n}\necho o('make_by_id');\n\n\n方法2：\nfunction ucfirstTest($str){\n    return ucfirst($str);\n}\nfunction test($str){\n    $arr = explode('_',$str);\n    $new_arr = array_map('ucfirstTest',$arr);\n    $str = implode('',$new_arr);\n    return $str;\n}\n$str = 'open_str';\necho test($str);\n~~~\n8、用PHP打印出前一天的时间格式是2006-5-10 22:21:21(2分)\n`echo date('Y-m-d H:i:s',strtotime('-1 days'));`\n\n9、mb_substr($str,1,10,'utf-8');\n\n10、修改session的生存时间\nsession_set_cookie_params\n\n11、strpos====这里要注意的就是strpos返回的是0，因为他在第0，所以要用===判断\n~~~\n$str = 'https://www.baidu.com';\n$str1 = 'https://';\nprint_r(strpos($str,$str1));\nif(strpos($str,$str1) !== false){\n\n}\n~~~\n\n\n12、下面输出是什么，主要考的就是运算符的优先级和++  --的问题\n~~~\n$x = 5;\necho $x;  5\necho \"<br />\";\necho $x+++$x++;  5+6 = 11\necho \"<br />\";\necho $x; 11\necho \"<br />\";\necho $x---$x--; 7-6 = 1\necho \"<br />\";\necho $x; 5\n~~~\n\n13、array_merge合并的时候，传入的都是数组，如果一个不是数组就会返回null\n\n14、$x = true and false; var_dump($x);  true\n\n15、PHP的可变变量：$a = c;  $$a = 10; $c = 10;\n~~~\n<form action=\"test.php\" method=\"post\">\n    <input type=\"text\" name=\"a\" id=\"\"/>\n    <input type=\"text\" name=\"b\" id=\"\"/>\n    <input type=\"submit\" value=\"aa\"/>\n</form>\n\nforeach($_POST as $k=>$v){\n    ${$k} = $v;\n}\necho 'a'.isset($a)?$a:''.PHP_EOL;\necho 'b'.isset($b)?$b:''.PHP_EOL;\n\n~~~\n16、什么是自连接：无限分类就是自己链接自己查询\n\n17、html动态生成的节点加点击事件\n~~~\n$(\".h3\").on(\"click\",\"h3\",{foo:\"文本:\"},function(event){\n　　　　alert(event.data.foo+this.textContent);\n　　});\n~~~\n\n18、$url = 'http://www.test.com.cn/abc/de/fg.php?id=1';  获取php或者.php\n~~~\n$b = parse_url($url);  //php解析url地址，parse_str是解析字符串parse_str($str,$out)\necho \"<pre>\";\n/**array(4) {\n[\"scheme\"]=>\n  string(4) \"http\"\n  [\"host\"]=>\n  string(15) \"www.test.com.cn\"\n  [\"path\"]=>\n  string(14) \"/abc/de/fg.php\"\n  [\"query\"]=>\n  string(4) \"id=1\"\n}\n */\n$arr = $b['path'];  ///abc/de/fg.php\necho substr($arr,strpos($arr,'.'));\n$new_arr = explode('.',$arr);\necho end($new_arr);\n高效\n$arr = parse_url('http://www.sina.com.cn/abc/de/fg.php?id=1');\n$result=pathinfo(arr['path']);var_dump($arr);\narray(4) { [\"dirname\"]=> string(7) \"/abc/de\" [\"basename\"]=> string(6) \"fg.php\" [\"extension\"]=> string(3) \"php\" [\"filename\"]=> string(2) \"fg\" }\nvar_dump($result['extension']);\n\n\n~~~\n19、mkdir和is_dir的使用\n~~~\n$dir = './liuzhu/test/';\nif(is_dir($dir)){  //如果存在就返回true\n    file_put_contents($dir.'1.txt',$url);\n}else{ //如果不存在就创建，true的这个参数是可以循环创建\n    if(mkdir($dir,0777,true)){\n        file_put_contents($dir.'1.txt',$url);\n    };\n}\n~~~\n\n\n20、定义一个字符串，然后获取第一个字符\n$str = 'abcdef';    $one = $str[1]  || $str{1} 这两种方式\n\n\n\n21、下面输出no\n~~~\n$v = 1;\n$m = 2;\n$l = 3;\n\nif( $l > $m > $v){\n    echo \"yes\";\n}else{\n    echo \"no\";\n}\n~~~\n首先$l>$m返回的是一个true  然后true>1   就返回了null\n\n22、获取图片的信息\n~~~\ngetimagesize () 获取图片的尺寸\nImagesx () 获取图片的宽度\nImagesy () 获取图片的高度\n~~~\n\n\n23、$_SERVER；\n~~~\n$host = $_SERVER['HTTP_HOST']; //localhost\n$self = $_SERVER['PHP_SELF']; ///phpTest/test.php\necho $host.$self;  //localhost/phpTest/test.php\necho $_SERVER['REMOTE_ADDR']; //客户端ip地址\necho $_SERVER['SERVER_ADDR']; //服务端ip地址\necho $_SERVER['REQUEST_URI']; ///phpTest/test.php\n~~~\n\n\n24、php.ini 中safe mod关闭 影响哪些函数和参数，至少写6个？\n~~~\nmove_uploaded_file()        exec()\nsystem()                              passthru()\npopen()                              fopen()\nmkdir()                               rmdir()\nrename()                            unlink()\ncopy()                                 chgrp()\nchown()                              chmod()\ntouch()                               symlink()\nlink()                                   parse_ini_file()\nset_time_limit()                  max_execution_time mail()\n\n~~~\n\n25、isset() 、empty()与is_null的区别\n1、当变量未定义时，is_null() 和“参数本身”是不允许作为参数判断的，会报Notice警告错误；\n2、empty , isset首先都会检查变量是否存在，然后对变量值进行检测。而is_null 和 “参数本身”只是直接检查变量值，是否为null，因此如果变量未定义就会出现错误！\n3、isset()：仅当null和未定义，返回false；\n4、empty()：\"\"、0、\"0\"、NULL、FALSE、array(),未定义，均返回true；\n5、is_null()：仅判断是否为null，未定义报警告；\n6、变量本身作为参数，与empty()一致，但接受未定义变量时，报警告；\n\n26、http_build_query()\n~~~\n$arr = [\n    'title'=>'nihao',\n    'content'=>'world'\n];\n$str = http_build_query($arr);\nvar_dump($str);\n~~~\n\n27、curl   file_get_contents()  socket三种方式实现提交数据\n\n\n28、var_dump(((bool)'all')+1);  2       true=1   1+1=2\n\n29、如果你一个整型integer超出了范围，那么就会被转成float\n\n30、如果你定义的了一个数组，那么当你unset这个数组的时候，你又定义了一个$a[5] 那么这个键应该是从5开始\n\n31、如何保证你的api接口的安全性\n\n32、这个地方考察是先用后加的问题\n~~~\n$a = 3;\n$b = 5;\nif($a == 3 || $b == 7){\n    echo $a++;\n    echo $b++;\n}\necho $a.'  '.$b;\n3 5  4 6\n\n~~~\n33、count除去数组和实例化对象  其他的count()都是1    null是0  \n~~~\n$a = count([4,5,6])+count(null)+count(false);\nvar_dump($a);\n~~~"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>

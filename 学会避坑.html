@@ -1,0 +1,55 @@
+<html><head><meta charSet="utf-8"/><title data-react-helmet="true">学会避坑 · PHP面试常考易错问题  · 看云</title><meta data-react-helmet="true" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/><link rel="stylesheet" href="asset/website.css"/></head><body><div id="main"><div class="root"><div class="window-container"><div class="window-head"><div class="toolbar"><a class="title" href=".">PHP面试常考易错问题</a><div class="extra"></div></div></div><div class="progress"><div style="width:68.42105263157895%" class="progress-bar"></div></div><div class="window-body"><div class="sidebar"><div class="sidebar-selector"><div class="item active"><i class="icon content"></i>目录</div><div class="item"><i class="icon search"></i>搜索</div></div><div class="sidebar-body"><div class="catalog-body active"><ul><li class=""><div class="wholerow"></div><i class="icon"></i><a href="本文概况介绍.html" class="text">本文概况介绍</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量作用域问题.html" class="text">变量作用域问题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="关于弱类型.html" class="text">关于弱类型</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="运算符优先级.html" class="text">运算符优先级</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="变量引用.html" class="text">变量引用</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="流程控制.html" class="text">流程控制</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="字符串处理.html" class="text">字符串处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="数组处理.html" class="text">数组处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="文件处理.html" class="text">文件处理</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="面向对象.html" class="text">面向对象</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="垃圾回收.html" class="text">垃圾回收</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="性能优化.html" class="text">性能优化</a></li><li class="active"><div class="wholerow"></div><i class="icon"></i><a href="学会避坑.html" class="text">学会避坑</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置缓存.html" class="text">内置缓存</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="可变变量.html" class="text">可变变量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="内置常量.html" class="text">预定义常量</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="php.ini常考.html" class="text">php.ini常考</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="常考题.html" class="text">常考题</a></li><li class=""><div class="wholerow"></div><i class="icon"></i><a href="PHP知识体系.html" class="text">PHP知识体系</a></li></ul></div><div class="search-body"><div class="search-form"><form class="ui form"><div class="ui small fluid icon input"><input type="text" placeholder="请输入搜索关键词..."/><i class="search icon"></i></div></form></div><div class="search-result"><div class="blankslate"><i class="icon search"></i><p>暂无相关搜索结果！</p></div></div></div></div><div class="sidebar-copyright">本文档使用 <a href="http://www.kancloud.cn" target="_blank">看云</a> 构建</div></div><div class="workspace"><div class="article-wrap"><div class="article"><div class="article-head"><div class="left floated tools"><a class="item icon"><i class="icon align justify"></i></a></div><div class="right floated tools"></div><h1>学会避坑</h1></div><div class="article-body"><p>1、下面是true还是false</p>
+<pre><code>var_dump(0123 == 123); 
+
+var_dump(&#x27;0123&#x27; == 123); 
+
+var_dump(&#x27;0123&#x27; === 123); 
+</code></pre>
+<p>var_dump(0123 == 123);// false,PHP会默认把0123当作8进制来处理，实际转化为10进制就是83，显然这不是相等的。</p>
+<p>var_dump(&#x27;0123&#x27; == 123);// true这里php会非常有趣的将&#x27;0123&#x27;转换成一个数字而且默认去掉了前面的0也就是123==123</p>
+<p>var_dump(&#x27;0123&#x27; === 123);// false很显然上面的问题已经说过了数字和字符串类型不一致。</p>
+<hr/>
+<p>2、isset() 、empty()与is_null的区别</p>
+<pre><code>1、当变量未定义时，is_null() 和“参数本身”是不允许作为参数判断的，会报Notice警告错误；
+2、empty , isset首先都会检查变量是否存在，然后对变量值进行检测。而is_null 和 “参数本身”
+只是直接检查变量值，是否为null，因此如果变量未定义就会出现错误！
+3、isset()：仅当null和未定义，返回false；
+4、empty()：&quot;&quot;、0、&quot;0&quot;、NULL、FALSE、array(),未定义，均返回true；
+5、is_null()：仅判断是否为null，未定义报警告；
+6、变量本身作为参数，与empty()一致，但接受未定义变量时，报警告；
+</code></pre>
+<hr/>
+<p>3、count除去数组和实例化对象  其他的count()都是1    null是0 **</p>
+<pre><code>$a = count([4,5,6])+count(null)+count(false);
+var_dump($a);   //output 4
+</code></pre>
+<hr/>
+<p>4、array_merge合并的时候，传入的都是数组，如果一个不是数组就会返回null，如果合并是一个是数组一个是对象，那么这个将是一个数组和对象的并存的状态，如果你想将对象转成数组，那么你可以使用array_map进行转化</p>
+<hr/>
+<p>5、下面输出no</p>
+<pre><code>$v = 1;
+$m = 2;
+$l = 3;
+
+if( $l &gt; $m &gt; $v){
+    echo &quot;yes&quot;;
+}else{
+    echo &quot;no&quot;;
+}
+</code></pre>
+<p>首先$l&gt;$m返回的是一个true  然后true&gt;1   就返回了null</p>
+<hr/>
+<p>6、执行下面代码$x会变成什么值呢？</p>
+<pre><code>$x = NULL;
+
+if (&#x27;0xFF&#x27; == 255) { 
+
+$x = (int)&#x27;0xFF&#x27;;
+
+}
+</code></pre>
+<p>实际的运行结果是$x=0而不是255.</p>
+<p>首先&#x27;oxFF&#x27; == 255我们好判断，会进行转换将16进制数字转换成10进制数字，0xff -&gt; 255.</p>
+<p>PHP使用is_numeric_string 判断字符串是否包含十六进制数字然后进行转换。</p>
+<p>但是$x = (int)&#x27;0xFF&#x27;;是否也会变成255呢？显然不是，将一个字符串进行强制类型转换实际上用的是convert_to_long,它实际上是将字符串从左向右进行转换，遇到非数字字符则停止。因此0xFF到x就停止了。所以$x=0</p>
+ </div><div class="article-navigation"><span class="prev">上一篇：<a href="性能优化.html">性能优化</a></span><span class="next">下一篇：<a href="内置缓存.html">内置缓存</a></span></div></div></div></div></div></div></div></div><script src="asset/website.js"></script><script src="asset/plugins/highlight/index.js"></script><script type="application/payload+json">{"config":{"plugins":["highlight"],"price":100,"name":"simengphp/phpinterview","sha":"f45c62a42f098cefec2df07337a5e959238277db","title":"PHP面试常考易错问题","id":64010},"catalog":[{"id":"本文概况介绍.html","name":"本文概况介绍.md","title":"本文概况介绍","depth":1},{"id":"变量作用域问题.html","name":"变量作用域问题.md","title":"变量作用域问题","depth":1},{"id":"关于弱类型.html","name":"关于弱类型.md","title":"关于弱类型","depth":1},{"id":"运算符优先级.html","name":"运算符优先级.md","title":"运算符优先级","depth":1},{"id":"变量引用.html","name":"变量引用.md","title":"变量引用","depth":1},{"id":"流程控制.html","name":"流程控制.md","title":"流程控制","depth":1},{"id":"字符串处理.html","name":"字符串处理.md","title":"字符串处理","depth":1},{"id":"数组处理.html","name":"数组处理.md","title":"数组处理","depth":1},{"id":"文件处理.html","name":"文件处理.md","title":"文件处理","depth":1},{"id":"面向对象.html","name":"面向对象.md","title":"面向对象","depth":1},{"id":"垃圾回收.html","name":"垃圾回收.md","title":"垃圾回收","depth":1},{"id":"性能优化.html","name":"性能优化.md","title":"性能优化","depth":1},{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","depth":1},{"id":"内置缓存.html","name":"内置缓存.md","title":"内置缓存","depth":1},{"id":"可变变量.html","name":"可变变量.md","title":"可变变量","depth":1},{"id":"内置常量.html","name":"内置常量.md","title":"预定义常量","depth":1},{"id":"php.ini常考.html","name":"php.ini常考.md","title":"php.ini常考","depth":1},{"id":"常考题.html","name":"常考题.md","title":"常考题","depth":1},{"id":"PHP知识体系.html","name":"PHP知识体系.md","title":"PHP知识体系","depth":1}],"article":{"id":"学会避坑.html","name":"学会避坑.md","title":"学会避坑","content":" 1、下面是true还是false\n\n~~~\nvar_dump(0123 == 123); \n\nvar_dump('0123' == 123); \n\nvar_dump('0123' === 123); \n~~~\n\nvar_dump(0123 == 123);// false,PHP会默认把0123当作8进制来处理，实际转化为10进制就是83，显然这不是相等的。\n\nvar_dump('0123' == 123);// true这里php会非常有趣的将'0123'转换成一个数字而且默认去掉了前面的0也就是123==123\n\nvar_dump('0123' === 123);// false很显然上面的问题已经说过了数字和字符串类型不一致。\n\n* * * * *\n\n2、isset() 、empty()与is_null的区别\n~~~\n1、当变量未定义时，is_null() 和“参数本身”是不允许作为参数判断的，会报Notice警告错误；\n2、empty , isset首先都会检查变量是否存在，然后对变量值进行检测。而is_null 和 “参数本身”\n只是直接检查变量值，是否为null，因此如果变量未定义就会出现错误！\n3、isset()：仅当null和未定义，返回false；\n4、empty()：\"\"、0、\"0\"、NULL、FALSE、array(),未定义，均返回true；\n5、is_null()：仅判断是否为null，未定义报警告；\n6、变量本身作为参数，与empty()一致，但接受未定义变量时，报警告；\n~~~\n\n* * * * *\n\n3、count除去数组和实例化对象  其他的count()都是1    null是0 **\n~~~\n$a = count([4,5,6])+count(null)+count(false);\nvar_dump($a);   //output 4\n~~~\n\n* * * * *\n\n4、array_merge合并的时候，传入的都是数组，如果一个不是数组就会返回null，如果合并是一个是数组一个是对象，那么这个将是一个数组和对象的并存的状态，如果你想将对象转成数组，那么你可以使用array_map进行转化\n\n* * * * *\n5、下面输出no\n~~~\n$v = 1;\n$m = 2;\n$l = 3;\n\nif( $l > $m > $v){\n    echo \"yes\";\n}else{\n    echo \"no\";\n}\n~~~\n首先$l>$m返回的是一个true  然后true>1   就返回了null\n\n* * * * *\n6、执行下面代码$x会变成什么值呢？\n\n~~~\n$x = NULL;\n\nif ('0xFF' == 255) { \n\n$x = (int)'0xFF';\n\n}\n~~~\n\n实际的运行结果是$x=0而不是255.\n\n首先'oxFF' == 255我们好判断，会进行转换将16进制数字转换成10进制数字，0xff -> 255.\n\nPHP使用is_numeric_string 判断字符串是否包含十六进制数字然后进行转换。\n\n但是$x = (int)'0xFF';是否也会变成255呢？显然不是，将一个字符串进行强制类型转换实际上用的是convert_to_long,它实际上是将字符串从左向右进行转换，遇到非数字字符则停止。因此0xFF到x就停止了。所以$x=0"},"options":{"plugins_host":null,"context":"website","base":"./","features":["search","internal_link"]},"style":""}</script><script type="text/javascript">kancloud.bootstrap();</script></body></html>
